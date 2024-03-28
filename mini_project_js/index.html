@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .divUser{
+            width: 45vw;
+            height: 45vh;
+            margin: 1vw;
+            background-color: #d38723;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: green;
+            border-radius: 10px;
+        }
+        .divUser>p{
+            font-size:5vh;
+        }
+        .divUser>button{
+            width: 50%;
+            height: 10%;
+            background-color: #d38723;
+            border: 1px solid green;
+            border-radius: 5px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // В index.html
+    // 1 отримати масив об'єктів з endpoint`а https://jsonplaceholder.typicode.com/users
+    // 2 Вивести id,name всіх user в index.html. Окремий блок для кожного user.
+    // 3 Додати кожному блоку кнопку/посилання , при кліку на яку відбувається перехід
+    // на сторінку user-details.html, котра має детальну інфорацію про об'єкт на який клікнули
+    let url = 'https://jsonplaceholder.typicode.com/users';
+    fetch(url).then(res=>res.json())
+        .then(users =>{
+        console.log(users);
+            for (const user of users) {
+                let div = document.createElement('div');
+                div.classList.add('divUser')
+                let h2 = document.createElement('h2');
+                h2.innerText =`${user.id}`
+                let p = document.createElement('p');
+                p.innerHTML = `<b>${user.name}</b>`
+                let button = document.createElement('button')
+                button.innerText = `Детальніше`
+                button.addEventListener('click',() =>{
+                    location.href ='user-details.html?id='+user.id;
+
+                })
+                div.append(h2,p,button)
+                document.body.appendChild(div)
+            }
+    })
+    // Стилизація проєкта -
+    // index.html - всі блоки з user - по 2 в рядок. кнопки/аосилвння розташувати під інформацією про user.
+    //     user-details.html - блок з інфою про user зверху сторінки. Кнопка нижчє, на 90% ширини сторінки, по центру.
+    //     блоки з короткою іфною про post - в ряд по 5 .
+    //     post-details.html - блок з інфою про пост зверху. Коментарі - по 4 в ряд.
+    //     Всі елементи котрі характеризують users, posts, comments візуалізувати, так, щоб було видно що це блоки (дати фон. марджини і тд)
+</script>
+</body>
+</html>
