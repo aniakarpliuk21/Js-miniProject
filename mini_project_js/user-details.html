@@ -34,7 +34,7 @@
             color: green;
         }
         .divText{
-            display: flex;
+            display: none;
             flex-wrap: wrap;
             width: 100vw;
             justify-content: center;
@@ -47,8 +47,8 @@
             border: 1px solid green;
             border-radius: 5px;
             color: green;
-            width:17%;
-            margin:1%;
+            width:17.7%;
+            margin:0.5%;
             justify-content: space-between;
             align-items: center;
             text-align: center;
@@ -98,10 +98,10 @@
             let divText = document.createElement('div')
             divText.classList.add('divText')
             button.addEventListener('click', function () {
-                if (divText.style.display==='flex') {
-                    divText.style.display ='none';
+                if (divText.style.display==='none') {
+                    divText.style.display ='flex';
                 } else {
-                    divText.style.display = 'flex'
+                    divText.style.display = 'none'
                 }
             })
             let url2 =  'https://jsonplaceholder.typicode.com/users/'+userId+'/posts'

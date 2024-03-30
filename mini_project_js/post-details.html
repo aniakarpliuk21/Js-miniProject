@@ -60,27 +60,30 @@ fetch(url).then(res=>res.json())
         postik.append(p,h3,p3)
         document.body.appendChild(postik)
     })
-    let commentsDiv = document.createElement('div')
-    commentsDiv.classList.add('commentsDiv')
-    let url2 = 'https://jsonplaceholder.typicode.com/posts/'+postId+'/comments'
-    fetch(url2).then(res=>res.json())
-    .then(comments=>{
-        for (const comment of comments) {
-            let commentDiv = document.createElement('div')
-            commentDiv.classList.add('commentDiv')
-            let h3 = document.createElement('h3')
-            h3.innerText = `Comment ${comment.id}`
-            let p2= document.createElement('p')
-            p2.innerText = `
+    setTimeout(function (){
+        let commentsDiv = document.createElement('div')
+        commentsDiv.classList.add('commentsDiv')
+        let url2 = 'https://jsonplaceholder.typicode.com/posts/'+postId+'/comments'
+        fetch(url2).then(res=>res.json())
+            .then(comments=>{
+                for (const comment of comments) {
+                    let commentDiv = document.createElement('div')
+                    commentDiv.classList.add('commentDiv')
+                    let h3 = document.createElement('h3')
+                    h3.innerText = `Comment ${comment.id}`
+                    let p2= document.createElement('p')
+                    p2.innerText = `
             Name - ${comment.name}
             Email - ${comment.email}
             ${comment.body}
            `
-            commentDiv.append(h3,p2)
-            commentsDiv.appendChild(commentDiv)
-            document.body.appendChild(commentsDiv)
-        }
-    })
+                    commentDiv.append(h3,p2)
+                    commentsDiv.appendChild(commentDiv)
+                    document.body.appendChild(commentsDiv)
+                }
+            })
+    },300);
+
 </script>
 </body>
 </html>
